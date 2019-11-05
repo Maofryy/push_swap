@@ -42,10 +42,10 @@ RED = \033[0;31m
 WHITE = \033[0m
 
 all : $(NAME)
-	$(MAKE) -C $(LIB_PATH)
+	@$(MAKE) -C $(LIB_PATH)
 
 $(NAME) : $(OBJ) ./includes/push_swap.h 
-	$(MAKE) -C $(LIB_PATH)
+	@$(MAKE) -C $(LIB_PATH)
 	$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJ) $(LIBS) -o $@ 
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
