@@ -30,7 +30,8 @@ LIB = $(LIB_PATH)/$(LIBFT)
 NAME = checker
 
 SRC_NAME = ft_checker.c \
-		ft_stack.c 
+	ft_stack.c \
+	ft_op.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -44,9 +45,9 @@ WHITE = \033[0m
 all : $(NAME)
 	@$(MAKE) -C $(LIB_PATH)
 
-$(NAME) : $(OBJ) ./includes/push_swap.h 
+$(NAME) : $(OBJ) ./includes/push_swap.h
 	@$(MAKE) -C $(LIB_PATH)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJ) $(LIBS) -o $@ 
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJ) $(LIBS) -o $@
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir -p $(OBJ_PATH)
@@ -72,7 +73,8 @@ re : fclean all
 run : $(NAME)
 #	$(CC) $(CFLAGS) $(CPPFLAGS) $(RUN_MAIN) $^ -o $(RUN_EXEC)
 #	./$(RUN_EXEC)
-	@./$^
+#	@./$^
+	@./$^.exe
 
 norme:
 	norminette $(SRC)

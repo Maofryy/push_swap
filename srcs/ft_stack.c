@@ -11,13 +11,43 @@ t_stack *ft_stack_new(int const data)
 	return (new);
 }
 
-void	ft_stack_add_beginning(t_stack **s, int new_data)
+void	ft_stack_push_beginning(t_stack **s, int new_data)
 {
 	t_stack *new;
+	t_stack *t;
 
+	t = *s;
 	new = ft_stack_new(new_data);
-	if (s != NULL && new != NULL)
-		(*s)->next = new;
+	if (t == NULL)
+		*s = new;
+	else
+	{
+		while (t->next != NULL)
+			t = t->next;
+		t->next = new;
+	}
+}
+
+int	ft_stack_pop_beginning(t_stack **s)
+{
+	int			ret;
+	t_stack	*t;
+
+	ret = 0;
+	if ((*s)->next == NULL) {
+			ret = (*s)->data;
+			free((*s));
+			return ret;
+	}
+	t = (*s);
+	while (t->next->next != NULL) {
+			t = t->next;
+	}
+
+	ret = t->next->data;
+	free(t->next);
+	t->next = NULL;
+	return (ret);
 }
 
 void	ft_stack_push(t_stack **s, int new_data)
@@ -34,8 +64,8 @@ void	ft_stack_push(t_stack **s, int new_data)
 
 int	ft_stack_pop(t_stack **s)
 {
-	int	ret;
-	t_stack *next;
+	int			ret;
+	t_stack	*next;
 
 	if (s == NULL)
 		return (-1);
@@ -45,16 +75,42 @@ int	ft_stack_pop(t_stack **s)
 	*s = next;
 	return (ret);
 }
-void	ft_print_stack(t_stack *start)
+
+int	ft_stack_size(t_stack *s)
 {
 	t_stack *t;
-	int i;
+	int			i;
 
-	t = start;
-	i = 0;
-	while (t)
+	t = s;
+	if (t == NULL)
+		return (0);
+	i = 1;
+	while (t->next != NULL)
 	{
-		ft_printf("[%d] : % 5d\n", i++, t->data);
 		t = t->next;
+		i++;
 	}
+	return (i);
+}
+
+void	ft_print_stack(t_stack *a, t_stack *b)
+{
+	t_stack *tmpa;
+	t_stack *tmpb;
+
+	tmpa = a;
+	tmpb = b;
+	ft_printf("\na | ");
+	while (tmpa)
+	{
+		ft_printf("% d ", tmpa->data);
+		tmpa = tmpa->next;
+	}
+	ft_printf("\nb | ");
+	while (tmpb)
+	{
+		ft_printf("% d ", tmpb->data);
+		tmpb = tmpb->next;
+	}
+	ft_putchar('\n');
 }
