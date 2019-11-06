@@ -3,7 +3,7 @@
 t_stack  *ft_read_args(int ac, char **av)
 {
   int i;
-  int value;
+  long value;
   t_stack *t;
   t_stack *a;
 
@@ -11,9 +11,9 @@ t_stack  *ft_read_args(int ac, char **av)
   a = NULL;
   while (++i < ac)
   {
-    // ft_stack_push_beginning(&a, ft_atoi(av[i]));
     if (ft_strlen(av[i]) > 10)
       ft_free_exit(a, 0);
+    if ()
     value = ft_atol(av[i]);
     if (value != (int)value)
       ft_free_exit(a, 0);
