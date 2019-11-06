@@ -34,6 +34,8 @@ int	ft_stack_pop_beginning(t_stack **s)
 	t_stack	*t;
 
 	ret = 0;
+	if (*s == NULL)
+		return (INT_MIN);
 	if ((*s)->next == NULL) {
 			ret = (*s)->data;
 			free((*s));
@@ -43,7 +45,6 @@ int	ft_stack_pop_beginning(t_stack **s)
 	while (t->next->next != NULL) {
 			t = t->next;
 	}
-
 	ret = t->next->data;
 	free(t->next);
 	t->next = NULL;
@@ -67,8 +68,8 @@ int	ft_stack_pop(t_stack **s)
 	int			ret;
 	t_stack	*next;
 
-	if (s == NULL)
-		return (-1);
+	if (*s == NULL)
+		return (INT_MIN);
 	next = (*s)->next;
 	ret = (*s)->data;
 	free(*s);
@@ -93,6 +94,21 @@ int	ft_stack_size(t_stack *s)
 	return (i);
 }
 
+void	ft_stack_del(t_stack **s)
+{
+	t_stack *t;
+
+	if (*s == NULL)
+		return ;
+	while ((*s)->next != NULL)
+	{
+		t = (*s)->next;
+		free(*s);
+		*s = t;
+	}
+	free(*s);
+}
+
 void	ft_print_stack(t_stack *a, t_stack *b)
 {
 	t_stack *tmpa;
@@ -103,13 +119,13 @@ void	ft_print_stack(t_stack *a, t_stack *b)
 	ft_printf("\na | ");
 	while (tmpa)
 	{
-		ft_printf("% d ", tmpa->data);
+		ft_printf("% 3d ", tmpa->data);
 		tmpa = tmpa->next;
 	}
 	ft_printf("\nb | ");
 	while (tmpb)
 	{
-		ft_printf("% d ", tmpb->data);
+		ft_printf("% 3d ", tmpb->data);
 		tmpb = tmpb->next;
 	}
 	ft_putchar('\n');

@@ -31,6 +31,9 @@ NAME = checker
 
 SRC_NAME = ft_checker.c \
 	ft_stack.c \
+	ft_exit.c \
+	ft_parse_op.c \
+	ft_parse_nb.c \
 	ft_op.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)

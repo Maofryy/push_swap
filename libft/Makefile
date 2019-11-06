@@ -28,7 +28,8 @@ LDLIBS = -lft
 NAME = libft.a
 
 SRC_NAME = ft_atoi.c \
-	   ft_bzero.c \
+	   ft_atol.c \
+		 ft_bzero.c \
 	   ft_isalnum.c \
 	   ft_isalpha.c \
 	   ft_isascii.c \
