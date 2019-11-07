@@ -130,3 +130,27 @@ void	ft_print_stack(t_stack *a, t_stack *b)
 	}
 	ft_putchar('\n');
 }
+
+int ft_stack_sorted(t_stack *a, int size)
+{
+	int inc;
+
+	if (ft_stack_size(a) <= 1)
+		return (1);
+	if (size < 0)
+	{
+		size = 2;
+		inc = 0;
+	}
+	else
+		inc = -1;
+
+	while (a->next && size > 1)
+	{
+				if (a->data > a->next->data)
+					return(0);
+				a = a->next;
+				size += inc;
+	}
+	return (1);
+}

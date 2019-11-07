@@ -44,7 +44,9 @@ SRC_NAME = ft_stack.c \
 SRC_CHK_NAME = ft_checker.c \
 	ft_parse_op.c
 
-SRC_PSW_NAME = ft_push_swap.c
+SRC_PSW_NAME = ft_push_swap.c \
+	ft_handle_ops.c \
+	ft_minisort.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_CHK_NAME = $(SRC_CHK_NAME:.c=.o)
@@ -62,12 +64,8 @@ GREEN = \033[0;32m
 RED = \033[0;31m
 WHITE = \033[0m
 
-all : print $(CHK) $(PSW)
+all : $(CHK) $(PSW)
 	@$(MAKE) -C $(LIB_PATH)
-
-print :
-		@echo $(SRC_CHK_PATH)
-		@echo $(OBJ_CHK_PATH)/%.o
 
 $(CHK) : $(OBJ) $(OBJ_CHK) ./includes/push_swap.h
 	@$(MAKE) -C $(LIB_PATH)

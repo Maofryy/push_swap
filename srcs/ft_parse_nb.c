@@ -34,10 +34,10 @@ t_stack  *ft_read_args(int ac, char **av)
   while (++i < ac)
   {
     if (ft_strlen(av[i]) > 11 || !(ft_is_num(av[i])))
-      ft_free_exit(a, 0);
+      ft_free_error(a, 0);
     value = ft_atol(av[i]);
     if (value != (int)value)
-      ft_free_exit(a, 0);
+      ft_free_error(a, 0);
     //if not duplicate :
     if (a == NULL)
       a = ft_stack_new((int)value);
@@ -47,7 +47,7 @@ t_stack  *ft_read_args(int ac, char **av)
       while (t != NULL && t->next != NULL)
       {
         if (t->data == (int)value)
-          ft_free_exit(a, 0);
+          ft_free_error(a, 0);
         t = t->next;
       }
       ft_stack_push_beginning(&a, (int)value);

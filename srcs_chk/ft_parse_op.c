@@ -21,6 +21,7 @@ int	ft_apply_rot(char *name, t_stack **a, t_stack **b)
 		ret = ft_reverse_rotate(a);
 	if (ft_strequ("rrb", name) || ft_strequ("rrr", name))
 		ret = ft_reverse_rotate(b);
+	ft_printf("op : %s\n", name);
 	return (ret);
 }
 
@@ -35,7 +36,7 @@ void ft_parse_op(t_stack **a, t_stack **b)
     if (ft_apply_rot(line, a, b) == -1)
     {
       free(line);
-      ft_free_exit(*a, *b);
+      ft_free_error(*a, *b);
     }
     ft_print_stack(*a, *b);
     free(line);

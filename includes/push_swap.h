@@ -23,6 +23,7 @@ long int			ft_stack_pop_beginning(t_stack **s);
 int			ft_stack_size(t_stack *s);
 void		ft_stack_del(t_stack **alst);
 void		ft_free_exit(t_stack *a, t_stack *b);
+int			ft_stack_sorted(t_stack *a, int size);
 
 /*
 **	Read args
@@ -33,8 +34,10 @@ int					ft_is_num(char *str);
 /*
 **	Operations
 */
+
 typedef enum	e_op
 {
+	NUL,
 	PA, PB,
 	SA, SB, SS,
 	RA, RB, RR,
@@ -48,12 +51,17 @@ int			ft_reverse_rotate(t_stack **s);
 int			ft_apply_rot(char *name, t_stack **a, t_stack **b);
 void		ft_parse_op(t_stack **a, t_stack **b);
 
+char		*ft_get_op(t_op ops);
+t_op		*ft_get_min_ops(t_stack *a);
+
+
 /*
 **	Check
 */
 void			ft_check(t_stack **a, t_stack **b);
 void			ft_free_exit(t_stack *a, t_stack *b);
 void			ft_free_only(t_stack *a, t_stack *b);
+void			ft_free_error(t_stack *a, t_stack *b);
 
 /*
 **	Messages
@@ -63,4 +71,8 @@ void ft_error(void);
 void ft_ok(void);
 void ft_ko(void);
 
+/*
+**	Sorting
+*/
+void			ft_minisort(t_stack *a, int n, t_op *ops);
 #endif
