@@ -26,7 +26,7 @@ void ft_check(t_stack **a, t_stack **b)
 	ft_free_only(*a, *b);
 	ft_ok();
 }
-
+#include <stdio.h>
 int main(int ac, char **av)
 {
 	t_stack *a;
@@ -37,10 +37,16 @@ int main(int ac, char **av)
 
 	//Parsing numbers // TO REDO
 	a = ft_read_args(ac, av);
-
+	if (ft_stack_size(a) <= 1)
+	{
+		ft_free_only(a, 0);
+		ft_ok();
+	}
 	ft_print_stack(a, b);
 	ft_parse_op(&a, &b);
 	ft_check(&a, &b);
-	// ft_printf("i : %ld | l : %ld\n", ft_atoi("3147483649"), ft_atol("3147483649"));
+
+
+	ft_printf("i : %ld | d : %d\n", -2147483648, (int)-2147483648);
 	return (0);
 }

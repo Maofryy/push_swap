@@ -1,5 +1,27 @@
 #include "push_swap.h"
 
+int ft_is_num(char *str)
+{
+  char  *s;
+  int   ret;
+
+  s = str;
+  ret = 0;
+  while (*s == ' ')
+    s++;
+  if (*s == '+' || *s == '-')
+    s++;
+  while (*s)
+  {
+    if(*s < '0' || *s > '9')
+      return (0);
+    else
+      ret = 1;
+    s++;
+  }
+  return (ret);
+}
+
 t_stack  *ft_read_args(int ac, char **av)
 {
   int i;
@@ -11,9 +33,8 @@ t_stack  *ft_read_args(int ac, char **av)
   a = NULL;
   while (++i < ac)
   {
-    if (ft_strlen(av[i]) > 10)
+    if (ft_strlen(av[i]) > 11 || !(ft_is_num(av[i])))
       ft_free_exit(a, 0);
-    if ()
     value = ft_atol(av[i]);
     if (value != (int)value)
       ft_free_exit(a, 0);

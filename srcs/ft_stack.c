@@ -28,18 +28,18 @@ void	ft_stack_push_beginning(t_stack **s, int new_data)
 	}
 }
 
-int	ft_stack_pop_beginning(t_stack **s)
+long int	ft_stack_pop_beginning(t_stack **s)
 {
 	int			ret;
 	t_stack	*t;
 
 	ret = 0;
 	if (*s == NULL)
-		return (INT_MIN);
+		return (INT_MIN - 1);
 	if ((*s)->next == NULL) {
 			ret = (*s)->data;
 			free((*s));
-			return ret;
+			return ((int)ret);
 	}
 	t = (*s);
 	while (t->next->next != NULL) {
@@ -48,7 +48,7 @@ int	ft_stack_pop_beginning(t_stack **s)
 	ret = t->next->data;
 	free(t->next);
 	t->next = NULL;
-	return (ret);
+	return ((int)ret);
 }
 
 void	ft_stack_push(t_stack **s, int new_data)
@@ -63,18 +63,18 @@ void	ft_stack_push(t_stack **s, int new_data)
 	}
 }
 
-int	ft_stack_pop(t_stack **s)
+long int	ft_stack_pop(t_stack **s)
 {
 	int			ret;
 	t_stack	*next;
 
 	if (*s == NULL)
-		return (INT_MIN);
+		return (INT_MIN - 1);
 	next = (*s)->next;
 	ret = (*s)->data;
 	free(*s);
 	*s = next;
-	return (ret);
+	return ((int)ret);
 }
 
 int	ft_stack_size(t_stack *s)

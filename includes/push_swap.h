@@ -2,8 +2,8 @@
 # define PUSH_SWAP_H
 
 # include "libft.h"
-#include <limits.h>
-// # define INT_MIN -2147483647
+// #include <limits.h>
+# define INT_MIN -2147483648
 /*
 **	Stack handling
 */
@@ -18,8 +18,8 @@ t_stack		*ft_stack_new(int const data);
 void		ft_print_stack(t_stack *a, t_stack *b);
 void		ft_stack_push(t_stack **s, int new_data);
 void		ft_stack_push_beginning(t_stack **s, int new_data);
-int			ft_stack_pop(t_stack **s);
-int			ft_stack_pop_beginning(t_stack **s);
+long int			ft_stack_pop(t_stack **s);
+long int			ft_stack_pop_beginning(t_stack **s);
 int			ft_stack_size(t_stack *s);
 void		ft_stack_del(t_stack **alst);
 void		ft_free_exit(t_stack *a, t_stack *b);
@@ -28,6 +28,7 @@ void		ft_free_exit(t_stack *a, t_stack *b);
 **	Read args
 */
 t_stack 		*ft_read_args(int ac, char **av);
+int					ft_is_num(char *str);
 
 /*
 **	Operations
