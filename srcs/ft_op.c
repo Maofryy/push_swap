@@ -38,7 +38,7 @@ int ft_rotate(t_stack **s) {
   i = ft_stack_pop(s);
   if (i == INT_MIN - 1)
     return (-1);
-  ft_stack_push_beginning(s, (int)i);
+  ft_stack_push_tail(s, (int)i);
   // ft_printf("rotate\n");
   return (1);
 }
@@ -48,10 +48,35 @@ int ft_reverse_rotate(t_stack **s) {
 
   if (ft_stack_size(*s) <= 1)
     return (0);
-  i = ft_stack_pop_beginning(s);
+  i = ft_stack_pop_tail(s);
   if (i == INT_MIN - 1)
     return (-1);
   ft_stack_push(s, (int)i);
   // ft_printf("reverse rotate\n");
   return (1);
+}
+
+int	ft_apply_rot(char *name, t_stack **a, t_stack **b)
+{
+	int	ret;
+
+	ret = -1;
+	if (ft_strequ("sa", name) || ft_strequ("ss", name))
+		ret = ft_swap(a);
+	if (ft_strequ("sb", name) || ft_strequ("ss", name))
+		ret = ft_swap(b);
+	if (ft_strequ("pa", name))
+		ret = ft_push(a, b);
+	if (ft_strequ("pb", name))
+		ret = ft_push(b, a);
+	if (ft_strequ("ra", name) || ft_strequ("rr", name))
+		ret = ft_rotate(a);
+	if (ft_strequ("rb", name) || ft_strequ("rr", name))
+		ret = ft_rotate(b);
+	if (ft_strequ("rra", name) || ft_strequ("rrr", name))
+		ret = ft_reverse_rotate(a);
+	if (ft_strequ("rrb", name) || ft_strequ("rrr", name))
+		ret = ft_reverse_rotate(b);
+	ft_printf("op : %s\n", name);
+	return (ret);
 }

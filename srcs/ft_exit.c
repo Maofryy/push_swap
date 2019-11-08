@@ -38,3 +38,10 @@ void ft_error(void)
 	ft_dprintf(2, "Error\n");
 	exit(EXIT_SUCCESS);
 }
+
+void ft_free_env(t_env *e)
+{
+	ft_free_only(e->a, e->b);
+	free(e->ops);
+	exit(EXIT_SUCCESS);
+}

@@ -11,7 +11,7 @@ t_stack *ft_stack_new(int const data)
 	return (new);
 }
 
-void	ft_stack_push_beginning(t_stack **s, int new_data)
+void	ft_stack_push_tail(t_stack **s, int new_data)
 {
 	t_stack *new;
 	t_stack *t;
@@ -28,7 +28,7 @@ void	ft_stack_push_beginning(t_stack **s, int new_data)
 	}
 }
 
-long int	ft_stack_pop_beginning(t_stack **s)
+long int	ft_stack_pop_tail(t_stack **s)
 {
 	int			ret;
 	t_stack	*t;

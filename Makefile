@@ -46,7 +46,8 @@ SRC_CHK_NAME = ft_checker.c \
 
 SRC_PSW_NAME = ft_push_swap.c \
 	ft_handle_ops.c \
-	ft_minisort.c
+	ft_mini_sort.c 
+	# ft_insertion_sort.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_CHK_NAME = $(SRC_CHK_NAME:.c=.o)
@@ -65,14 +66,14 @@ RED = \033[0;31m
 WHITE = \033[0m
 
 all : $(CHK) $(PSW)
-	@$(MAKE) -C $(LIB_PATH)
+	$(MAKE) -C $(LIB_PATH)
 
 $(CHK) : $(OBJ) $(OBJ_CHK) ./includes/push_swap.h
-	@$(MAKE) -C $(LIB_PATH)
+	$(MAKE) -C $(LIB_PATH)
 	$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJ) $(OBJ_CHK) $(LIBS) -o $@
 
 $(PSW) : $(OBJ) $(OBJ_PSW) ./includes/push_swap.h
-		@$(MAKE) -C $(LIB_PATH)
+		$(MAKE) -C $(LIB_PATH)
 		$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJ) $(OBJ_PSW) $(LIBS) -o $@
 
 $(OBJ_CHK_PATH)/%.o: $(SRC_CHK_PATH)/%.c
@@ -104,7 +105,7 @@ re : fclean all
 
 .PHONY : clean fclean re
 
-.SILENT : all $(NAME) clean fclean re
+.SILENT : all $(CHK) $(PSW) clean fclean re
 
 run : $(NAME)
 #	$(CC) $(CFLAGS) $(CPPFLAGS) $(RUN_MAIN) $^ -o $(RUN_EXEC)

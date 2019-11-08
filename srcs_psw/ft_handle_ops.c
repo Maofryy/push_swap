@@ -28,16 +28,14 @@ char *ft_get_op(t_op ops)
 		return (NULL);
 }
 
-t_op *ft_get_min_ops(t_stack *a)
+void ft_get_min_ops(t_env *e)
 {
   int n;
-  t_op *ops;
 
-  n = ft_stack_size(a);
-  ops = malloc(sizeof(t_op) * 10);
+  n = ft_stack_size(e->a);
+  e->ops = malloc(sizeof(t_op) * 1024);
   if (n <= 3)
-    ft_minisort(a, n, ops);
-  else
-    return (NULL);
-  return (ops);
+    ft_mini_sort(e, n);
+  // else if (n <= 32)
+    // ft_insertion_sort(n, e);
 }

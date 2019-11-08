@@ -50,7 +50,7 @@ t_stack  *ft_read_args(int ac, char **av)
           ft_free_error(a, 0);
         t = t->next;
       }
-      ft_stack_push_beginning(&a, (int)value);
+      ft_stack_push_tail(&a, (int)value);
     }
   }
   return (a);
