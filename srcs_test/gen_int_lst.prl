@@ -1,0 +1,19 @@
+
+use warnings;
+use strict;
+
+die "usage : [nombre d'entiers] [int min] [int max]" unless (scalar(@ARGV) == 3);
+
+my ($n, $min, $max) = @ARGV;
+my @lst = ();
+my $k = 0;
+
+for (my $i = 0; $i < $n; $i++)
+{
+    $k = int(rand($max - $min)) + $min;
+    while ( grep( /^$k$/, @lst ) ) {
+      $k = int(rand($max - $min)) + $min;
+    }
+    push @lst, $k;
+}
+print "@lst ";

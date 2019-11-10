@@ -20,6 +20,18 @@ void ft_free_error(t_stack *a, t_stack *b)
 	ft_error();
 }
 
+//to test out and implement after insersort is done
+void free_anything(void *arg1, ...)
+{
+    va_list args;
+    void *vp;
+
+    free(arg1);
+    va_start(args, arg1);
+    while ((vp = va_arg(args, void *)) != 0)
+        free(vp);
+    va_end(args);
+}
 
 void ft_ko(void)
 {

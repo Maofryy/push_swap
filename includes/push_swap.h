@@ -59,16 +59,17 @@ int			ft_push(t_stack **a, t_stack **b);
 int			ft_rotate(t_stack **s);
 int			ft_reverse_rotate(t_stack **s);
 int			ft_apply_rot(char *name, t_stack **a, t_stack **b);
-void		ft_parse_op(t_stack **a, t_stack **b);
+int			ft_parse_op(t_stack **a, t_stack **b);
 
 char		*ft_get_op(t_op ops);
-void    ft_get_min_ops(t_env *a);
+void    ft_get_min_ops(t_env *e);
+int     ft_apply_op(t_op op, t_env *e);
 
 
 /*
 **	Check
 */
-void			ft_check(t_stack **a, t_stack **b);
+void			ft_check(t_stack **a, t_stack **b, int n);
 void			ft_free_exit(t_stack *a, t_stack *b);
 void			ft_free_only(t_stack *a, t_stack *b);
 void			ft_free_error(t_stack *a, t_stack *b);
@@ -86,5 +87,6 @@ void ft_ko(void);
 **	Sorting
 */
 void			ft_mini_sort(t_env *e, int n);
-void      ft_insertsort(int n, t_env *e);
+void      ft_insert_sort(int n, t_env *e);
+
 #endif

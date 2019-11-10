@@ -46,8 +46,8 @@ SRC_CHK_NAME = ft_checker.c \
 
 SRC_PSW_NAME = ft_push_swap.c \
 	ft_handle_ops.c \
-	ft_mini_sort.c 
-	# ft_insertion_sort.c
+	ft_mini_sort.c \
+	ft_insertion_sort.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_CHK_NAME = $(SRC_CHK_NAME:.c=.o)

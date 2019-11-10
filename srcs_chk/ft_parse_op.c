@@ -1,9 +1,11 @@
 #include "push_swap.h"
 
-void ft_parse_op(t_stack **a, t_stack **b)
+int ft_parse_op(t_stack **a, t_stack **b)
 {
   char  *line;
+  int   n;
 
+  n = 0;
   while (get_next_line(STDIN_FILENO, &line) > 0)
   {
     if (ft_strlen(line) == 0)
@@ -13,7 +15,9 @@ void ft_parse_op(t_stack **a, t_stack **b)
       free(line);
       ft_free_error(*a, *b);
     }
-    ft_print_stack(*a, *b);
+    n++;
+    // ft_print_stack(*a, *b);
     free(line);
   }
+  return (n);
 }

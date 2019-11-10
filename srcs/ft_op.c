@@ -77,6 +77,32 @@ int	ft_apply_rot(char *name, t_stack **a, t_stack **b)
 		ret = ft_reverse_rotate(a);
 	if (ft_strequ("rrb", name) || ft_strequ("rrr", name))
 		ret = ft_reverse_rotate(b);
-	ft_printf("op : %s\n", name);
+	// ft_printf("op : %s\n", name);
+	return (ret);
+}
+
+char	*ft_get_op(t_op op)
+{
+	static char	*ops[] = {
+    "nul",
+		"pa", "pb",
+		"sa", "sb", "ss",
+		"ra", "rb", "rr",
+		"rra", "rrb", "rrr"
+	};
+
+	return (ops[op]);
+}
+
+int ft_apply_op(t_op op, t_env *e)
+{
+	int	ret;
+  char *name;
+
+	ret = -1;
+  name = ft_get_op(op);
+  ret = ft_apply_rot(name, &e->a, &e->b);
+  e->ops[e->ops_nb++] = op;
+  e->ops[e->ops_nb] = 0;
 	return (ret);
 }

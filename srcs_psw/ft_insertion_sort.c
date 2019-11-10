@@ -1,22 +1,24 @@
 #include "push_swap.h"
 
-static void	setup_tab_list(int n, int left, t_stack *a, int *tab, t_op *ops)
+static void	setup_tab_list(int n, int left, t_env *e, int *tab)
 {
 	int		index;
 	t_stack	*curr;
 
-	index = left;
-	while (index < n)
+	index = left - 1;
+	while (++index < n)
 	{
-		ft_push(&b, &a);
-    *(ops++) = PB;
-		index++;
+    if (ft_apply_op(PB, e) == -1)
+    {
+      free(tab);
+      ft_free_error(e->a, e->b);
+    }
 	}
-	if (!ft_stack_sorted(a, left))
-		(ft_stack_size(a) == left)
-			? ft_mini_sort(left, ps) : threesort(left, ps);
+  // ft_printf("left : %d\n", left);
+	if (!ft_stack_sorted(e->a, left))
+    ft_mini_sort(e, left);
 	index = 0;
-	curr = a;
+	curr = e->a;
 	while (index < left)
 	{
 		tab[index] = curr->data;
@@ -37,31 +39,31 @@ static void	create_tab_hole(int n, int *tab, int at)
 	}
 }
 
-static void	rotate_to(int index, t_stack *a)
+static void	rotate_to(int index, t_env *e)
 {
 	static int	offset = 0;
 	int			tmp;
-	int			lst_size;
+	int			stack_size;
 	int			rot_count;
-	t_rot		rot_type;
+	t_op		op;
 
 	tmp = ft_abs(index - offset);
-	lst_size = ft_lstsize(ps->lst);
-	rot_count = (lst_size - tmp <= lst_size / 2) ? lst_size - tmp : tmp;
+	stack_size = ft_stack_size(e->a);
+	rot_count = (stack_size - tmp <= stack_size / 2) ? stack_size - tmp : tmp;
 	if (offset < index)
-		rot_type = (lst_size - tmp <= lst_size / 2) ? RRA : RA;
+		op = (stack_size - tmp <= stack_size / 2) ? RRA : RA;
 	else
-		rot_type = (lst_size - tmp <= lst_size / 2) ? RA : RRA;
+		op = (stack_size - tmp <= stack_size / 2) ? RA : RRA;
 	offset = index;
 	index = 0;
 	while (index < rot_count)
 	{
-		ps_rot(rot_type, ps);
+		ft_apply_op(op, e);
 		index++;
 	}
 }
 
-void ft_insertsort(int n, t_env *e)
+void ft_insert_sort(int n, t_env *e)
 {
 	int	*tab;
 	int	left;
@@ -71,19 +73,19 @@ void ft_insertsort(int n, t_env *e)
 	if (!(tab = (int *)ft_memalloc(n * sizeof(int))))
 		return ;
 	left = ft_min(3, n);
-	setup_tab_list(n, left, ps, tab);
+	setup_tab_list(n, left, e, tab);
 	index = left;
 	while (index < n)
 	{
 		j = 0;
-		while (j < index && tab[j] < *((int *)(ps->tmp)->content))
+		while (j < index && tab[j] < e->b->data)
 			j++;
 		create_tab_hole(index, tab, j);
-		tab[j] = *((int *)(ps->tmp)->content);
-		rotate_to(j, ps);
-		ps_rot(PA, ps);
+		tab[j] = e->b->data;
+		rotate_to(j, e);
+		ft_apply_op(PA, e);
 		index++;
 	}
-	rotate_to(0, ps);
+	rotate_to(0, e);
 	free(tab);
 }
