@@ -26,7 +26,7 @@ void ft_check(t_stack **a, t_stack **b, int n)
 				t = t->next;
 	}
 	ft_free_only(*a, *b);
-	ft_printf("%d ops.\n", n);
+	// ft_printf("%d ops.\n", n);
 	ft_ok();
 }
 #include <stdio.h>
