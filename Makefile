@@ -96,22 +96,22 @@ clean :
 	rm -rf $(OBJ_PATH) $(OBJ_CHK_PATH) $(OBJ_PSW_PATH) && echo "$(RED)objects successfully deleted$(WHITE)"
 	rmdir $(OBJ_PATH) 2> /dev/null || true
 
-fclean : clean
+run_clean :
+	rm -f *.ret && echo "$(RED)ret files deleted$(WHITE)"
+
+fclean : clean run_clean
 	$(MAKE) fclean -C $(LIB_PATH)
 	rm -f $(CHK) $(PSW) && echo "$(RED)$(CHK) $(PSW) deleted$(WHITE)"
 	rm -f $(RUN_EXEC)
 
 re : fclean all
 
-.PHONY : clean fclean re
+.PHONY : clean fclean re run_clean
 
-.SILENT : all $(CHK) $(PSW) clean fclean re
+.SILENT : all $(CHK) $(PSW) clean fclean re run_clean
 
-run : $(NAME)
-#	$(CC) $(CFLAGS) $(CPPFLAGS) $(RUN_MAIN) $^ -o $(RUN_EXEC)
-#	./$(RUN_EXEC)
-#	@./$^
-	@./$^.exe
+run : all
+	sh srcs_test/tests.sh ${ARGS}
 
 norme:
 	norminette $(SRC)

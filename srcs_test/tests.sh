@@ -10,13 +10,18 @@ fi
 NB=$1
 MAX=0
 
+#CHK=./checker.exe
+#PS=./push_swap.exe
+CHK=./checker
+PS=./push_swap
+
 echo "$1 tests of $2 ints between $3 and $4"
 
 while [ $NB -ne 0 ]
 do
   TEST=$(perl srcs_test/gen_int_lst.prl $2 $3 $4)
-  ./push_swap.exe $TEST > ps.ret
-  cat ps.ret | ./checker.exe $TEST > file.ret
+  $PS $TEST > ps.ret
+  cat ps.ret | $CHK $TEST > file.ret
   # ./push_swap.exe $TEST | ./checker.exe $TEST > ret_file
   KO_RET=$(cat file.ret | grep KO | wc -l)
   NB_OP=$(cat file.ret | grep ops. |cut -d ' ' -f 1)
