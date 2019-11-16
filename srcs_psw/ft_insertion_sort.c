@@ -14,9 +14,8 @@ static void	setup_tab_list(int n, int left, t_env *e, int *tab)
       ft_free_error(e->a, e->b);
     }
 	}
-  // ft_printf("left : %d\n", left);
 	if (!ft_stack_sorted(e->a, left))
-    ft_mini_sort(e, left);
+    ft_three_front_sort(left, e);
 	index = 0;
 	curr = e->a;
 	while (index < left)

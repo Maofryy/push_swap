@@ -88,5 +88,8 @@ void ft_ko(void);
 */
 void			ft_mini_sort(t_env *e, int n);
 void      ft_insert_sort(int n, t_env *e);
+int				is_gte_value(int n, t_stack *s, int value);
+void      ft_quick_sort(int n, t_env *e);
+void			ft_three_front_sort(int n, t_env *e);
 
 #endif

@@ -144,7 +144,6 @@ int ft_stack_sorted(t_stack *a, int size)
 	}
 	else
 		inc = -1;
-
 	while (a->next && size > 1)
 	{
 				if (a->data > a->next->data)

@@ -21,16 +21,18 @@ for param in $@; do
     -h) HELP=1
         shift
         ;;
-    # -r) RET=1
-    #     shift
-    #     ;;
+    -m) RET=1
+        shift
+        ;;
     #*) echo "Option $1 not recognized"
   esac
 done
 
 if [ $HELP -eq 1 ] || [ $INT_MIN -ge $INT_MAX ] || [ $NB_TESTS -le 0 ]
 then
-  echo "usage : tests.sh [number of tests] [size of int list] [int min] [int max]"
+  echo "usage : tests.sh -options [number of tests] [size of int list] [int min] [int max]"
+  echo "        -v Verbose mode, displaying each test and return from executables"
+  echo "        -h Help displays this help message"
   exit
 fi
 
@@ -52,6 +54,7 @@ then
 fi
 
 MAX=0
+MIN=10000
 
 #CHK=./checker.exe
 #PS=./push_swap.exe
@@ -60,7 +63,8 @@ PS=./push_swap
 
 echo "$NB_TESTS tests of $SIZE ints between $INT_MIN and $INT_MAX"
 
-while [ $NB_TESTS -ne 0 ]
+NB_TEST=$NB_TESTS
+while [ $NB_TEST -ne 0 ]
 do
   TEST=$(perl srcs_test/gen_int_lst.prl $SIZE $INT_MIN $INT_MAX)
   $PS $TEST > ps.ret
@@ -76,11 +80,18 @@ do
     echo $TEST > max_test.ret
     MAX=$NB_OP
   fi
+  if [ $NB_OP -lt $MIN ]
+  then
+    cat ps.ret > min_ps.ret
+    cat file.ret > min_file.ret
+    echo $TEST > min_test.ret
+    MIN=$NB_OP
+  fi
 
   if [ $VERB -eq 1 ]
   then
-    echo "Test number : $NB_TESTS"
-    echo -n "$TEST => "
+    echo "Test number : $[$NB_TESTS - $NB_TEST + 1] "
+    echo "$TEST=> "
     paste -d ' ' -s ps.ret file.ret
     echo ' '
   fi
@@ -93,13 +104,17 @@ do
     exit
   fi
 
-  NB_TESTS=$[$NB_TESTS-1];
+  NB_TEST=$[$NB_TEST-1];
 done
 
-# if [ $RET -eq 1 ]
-# then
+if [ $RET -eq 1 ]
+then
+echo "Min number of operations $MIN :"
+paste -d ' ' -s min_ps.ret
+cat min_file.ret | grep OK
+cat min_test.ret
 echo "Max number of operations $MAX :"
 paste -d ' ' -s max_ps.ret
 cat max_file.ret | grep OK
 cat max_test.ret
-# fi
+fi
