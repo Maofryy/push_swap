@@ -1,7 +1,7 @@
 #include "push_swap.h"
 #include "libft.h"
 
-void ft_check(t_stack **a, t_stack **b, int n)
+void ft_check(t_stack **a, t_stack **b)
 {
 	t_stack		*t;
 
@@ -12,10 +12,7 @@ void ft_check(t_stack **a, t_stack **b, int n)
 		ft_ko();
 	}
 	if (ft_stack_size(*a) <= 1)
-	{
-		ft_printf("%d ops.\n", n);
 		ft_ok();
-	}
 	while (t->next)
 	{
 				if (t->data > t->next->data)
@@ -26,7 +23,6 @@ void ft_check(t_stack **a, t_stack **b, int n)
 				t = t->next;
 	}
 	ft_free_only(*a, *b);
-	// ft_printf("%d ops.\n", n);
 	ft_ok();
 }
 #include <stdio.h>
@@ -48,7 +44,7 @@ int main(int ac, char **av)
 	}
 	// ft_print_stack(a, b);
 	n = ft_parse_op(&a, &b);
-	ft_check(&a, &b, n);
+	ft_check(&a, &b);
 
 
 	ft_printf("i : %ld | d : %d\n", -2147483648, (int)-2147483648);

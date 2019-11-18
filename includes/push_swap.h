@@ -69,7 +69,7 @@ int     ft_apply_op(t_op op, t_env *e);
 /*
 **	Check
 */
-void			ft_check(t_stack **a, t_stack **b, int n);
+void			ft_check(t_stack **a, t_stack **b);
 void			ft_free_exit(t_stack *a, t_stack *b);
 void			ft_free_only(t_stack *a, t_stack *b);
 void			ft_free_error(t_stack *a, t_stack *b);

@@ -16,7 +16,7 @@ int ft_parse_op(t_stack **a, t_stack **b)
       ft_free_error(*a, *b);
     }
     n++;
-    // ft_print_stack(*a, *b);
+    ft_print_stack(*a, *b);
     free(line);
   }
   return (n);
