@@ -92,4 +92,7 @@ int				is_gte_value(int n, t_stack *s, int value);
 void      ft_quick_sort(int n, t_env *e);
 void			ft_three_front_sort(int n, t_env *e);
 
+void		  optimize_couples(t_env *e);
+t_op      *ft_cut_2op_list(t_op *ops, int index, int max);
+
 #endif

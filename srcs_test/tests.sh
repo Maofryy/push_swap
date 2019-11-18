@@ -59,7 +59,7 @@ MIN=10000
 #CHK=./checker.exe
 #PS=./push_swap.exe
 CHK=./checker
-PS=./push_swap
+PS=./push_swap_opti
 
 echo "$NB_TESTS tests of $SIZE ints between $INT_MIN and $INT_MAX"
 
@@ -106,14 +106,14 @@ do
 
   NB_TEST=$[$NB_TEST-1];
 done
-
+echo "Max number of operations $MAX"
 if [ $RET -eq 1 ]
 then
-echo "Min number of operations $MIN :"
+echo "Min number of operations $MIN"
 paste -d ' ' -s min_ps.ret
 cat min_file.ret | grep OK
 cat min_test.ret
-echo "Max number of operations $MAX :"
+echo "Max number of operations $MAX"
 paste -d ' ' -s max_ps.ret
 cat max_file.ret | grep OK
 cat max_test.ret

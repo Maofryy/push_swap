@@ -15,7 +15,8 @@ static void	setup_tab_list(int n, int left, t_env *e, int *tab)
     }
 	}
 	if (!ft_stack_sorted(e->a, left))
-    ft_three_front_sort(left, e);
+    (ft_stack_size(e->a) ==left )
+			? ft_mini_sort(e, left) : ft_three_front_sort(left, e);
 	index = 0;
 	curr = e->a;
 	while (index < left)
@@ -69,6 +70,7 @@ void ft_insert_sort(int n, t_env *e)
 	int	index;
 	int	j;
 
+	// ft_print_stack(e->a, e->b);
 	if (!(tab = (int *)ft_memalloc(n * sizeof(int))))
 		return ;
 	left = ft_min(3, n);

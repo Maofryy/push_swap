@@ -106,7 +106,7 @@ void ft_quick_sort(int n, t_env *e)
 
   if (n < 2 || sort_special_cases(n, e))
 		return ;
-	value = find_median_pivot(n, e->a);
+  value = find_median_pivot(n, e->a);
   pivot = partition(n, e, value);
   if (!ft_stack_sorted(e->a, n - pivot))
 		ft_quick_sort(n - pivot, e);
