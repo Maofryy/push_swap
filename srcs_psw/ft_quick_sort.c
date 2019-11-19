@@ -33,7 +33,7 @@ static int	find_median_pivot(int n, t_stack *a)
 	while (index < n)
 	{
 		tab[index] = a->data;
-	   a = a->next;
+	   	a = a->next;
 		index++;
 	}
 	bubble_sort(n, tab);
@@ -46,12 +46,12 @@ static int	part(t_env *e, int value)
 {
 	if (e->a->data >= value)
 	{
-    ft_apply_op(RA, e);
+    	ft_apply_op(RA, e);
 		return (0);
 	}
 	else
 	{
-    ft_apply_op(PB, e);
+    	ft_apply_op(PB, e);
 		return (1);
 	}
 }
@@ -77,7 +77,7 @@ static int	partition(int n, t_env *e, int value)
 	index = 0;
 	while (index < rot_count)
 	{
-    ft_apply_op(op, e);
+    	ft_apply_op(op, e);
 		index++;
 	}
 	return (pivot);
@@ -88,12 +88,11 @@ static int	sort_special_cases(int n, t_env *e)
 	if (n <= 3)
 	{
 		ft_three_front_sort(n, e);
-		// ft_mini_sort(e, n);
 		return (1);
 	}
-	else if (n <= 5)
+	else if (n <= 32)
 	{
-    ft_insert_sort(n, e);
+    	ft_insert_sort(n, e);
 		return (1);
 	}
 	return (0);
@@ -105,17 +104,16 @@ void ft_quick_sort(int n, t_env *e)
 	int	pivot;
 	int	index;
 
-	// ft_printf("Using quick sort\n");
 	if (n < 2 || sort_special_cases(n, e))
 		return ;
-  value = find_median_pivot(n, e->a);
-  pivot = partition(n, e, value);
-  if (!ft_stack_sorted(e->a, n - pivot))
+	value = find_median_pivot(n, e->a);
+  	pivot = partition(n, e, value);
+  	if (!ft_stack_sorted(e->a, n - pivot))
 		ft_quick_sort(n - pivot, e);
-  index = 0;
+  	index = 0;
 	while (index < pivot)
 	{
-    ft_apply_op(PA, e);
+    	ft_apply_op(PA, e);
 		index++;
 	}
 	if (!ft_stack_sorted(e->a, pivot))

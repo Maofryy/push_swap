@@ -67,13 +67,14 @@ NB_TEST=$NB_TESTS
 PROGRESS=0
 while [ $NB_TEST -ne 0 ]
 do
+  PROGRESS=$[100 - $NB_TEST * 100 / ($NB_TESTS)]
+  echo -ne "     $PROGRESS%\r"
   TEST=$(perl test/gen_int_lst.prl $SIZE $INT_MIN $INT_MAX)
   $PS $TEST > ps.ret
   cat ps.ret | $CHK $TEST > file.ret
   # ./push_swap.exe $TEST | ./checker.exe $TEST > ret_file
   KO_RET=$(cat file.ret | grep KO | wc -l)
   NB_OP=$(cat ps.ret | wc -l)
-
   if [ $NB_OP -gt $MAX ]
   then
     cat ps.ret > max_ps.ret
@@ -105,12 +106,12 @@ do
     exit
   fi
 
-  PROGRESS=$[100 - $NB_TEST * 100 / ($NB_TESTS)]
-  echo -ne "     $PROGRESS%\r"
+  
   NB_TEST=$[$NB_TEST-1];
 done
 PROGRESS=$[100 - $NB_TEST * 100 / ($NB_TESTS)]
-echo -ne "     $PROGRESS%\n"
+echo -ne "     $PROGRESS%\r"
+
 echo "Min number of operations $MIN"
 echo "Max number of operations $MAX"
 if [ $RET -eq 1 ]
