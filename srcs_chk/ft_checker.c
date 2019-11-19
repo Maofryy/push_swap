@@ -44,9 +44,14 @@ int main(int ac, char **av)
 	}
 	// ft_print_stack(a, b);
 	n = ft_parse_op(&a, &b);
+	ft_printf("%d operations.\n", n);
 	ft_check(&a, &b);
-
-	(void)n;
-	ft_printf("i : %ld | d : %d\n", -2147483648, (int)-2147483648);
+	
+	// (void)ac;(void)av;
+	// char *line;
+	// while (get_next_line(STDIN_FILENO, &line) > 0)
+  	// {
+	// 	  ft_printf("%s\n", line);
+	// }
 	return (0);
 }
