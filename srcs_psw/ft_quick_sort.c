@@ -88,9 +88,10 @@ static int	sort_special_cases(int n, t_env *e)
 	if (n <= 3)
 	{
 		ft_three_front_sort(n, e);
+		// ft_mini_sort(e, n);
 		return (1);
 	}
-	else if (n <= 12)
+	else if (n <= 5)
 	{
     ft_insert_sort(n, e);
 		return (1);
@@ -104,7 +105,8 @@ void ft_quick_sort(int n, t_env *e)
 	int	pivot;
 	int	index;
 
-  if (n < 2 || sort_special_cases(n, e))
+	// ft_printf("Using quick sort\n");
+	if (n < 2 || sort_special_cases(n, e))
 		return ;
   value = find_median_pivot(n, e->a);
   pivot = partition(n, e, value);

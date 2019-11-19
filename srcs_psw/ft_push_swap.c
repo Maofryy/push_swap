@@ -43,7 +43,7 @@ int main(int ac, char **av)
 
   // ft_print_stack(e.a, 0);
   // ft_printf("ops_pos = %d\n", e.ops_nb);
-  // optimize_couples(&e);
+  optimize_couples(&e);
   i = -1;
   while (e.ops && e.ops[++i])
     ft_printf("%s\n", ft_get_op(e.ops[i]));

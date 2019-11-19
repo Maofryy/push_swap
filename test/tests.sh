@@ -59,14 +59,15 @@ MIN=10000
 #CHK=./checker.exe
 #PS=./push_swap.exe
 CHK=./checker
-PS=./push_swap_opti
+PS=./push_swap
 
 echo "$NB_TESTS tests of $SIZE ints between $INT_MIN and $INT_MAX"
 
 NB_TEST=$NB_TESTS
+PROGRESS=0
 while [ $NB_TEST -ne 0 ]
 do
-  TEST=$(perl srcs_test/gen_int_lst.prl $SIZE $INT_MIN $INT_MAX)
+  TEST=$(perl test/gen_int_lst.prl $SIZE $INT_MIN $INT_MAX)
   $PS $TEST > ps.ret
   cat ps.ret | $CHK $TEST > file.ret
   # ./push_swap.exe $TEST | ./checker.exe $TEST > ret_file
@@ -104,13 +105,18 @@ do
     exit
   fi
 
+  PROGRESS=$[100 - $NB_TEST * 100 / ($NB_TESTS)]
+  echo -ne "     $PROGRESS%\r"
   NB_TEST=$[$NB_TEST-1];
 done
+PROGRESS=$[100 - $NB_TEST * 100 / ($NB_TESTS)]
+echo -ne "     $PROGRESS%\n"
+echo "Min number of operations $MIN"
 echo "Max number of operations $MAX"
 if [ $RET -eq 1 ]
 then
 echo "Min number of operations $MIN"
-paste -d ' ' -s min_ps.ret
+paste -d ' ' -s min_ps.ret 
 cat min_file.ret | grep OK
 cat min_test.ret
 echo "Max number of operations $MAX"
@@ -118,3 +124,5 @@ paste -d ' ' -s max_ps.ret
 cat max_file.ret | grep OK
 cat max_test.ret
 fi
+
+rm -f *.ret

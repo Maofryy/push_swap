@@ -17,9 +17,9 @@ SRC_PATH = ./srcs
 SRC_CHK_PATH = ./srcs_chk
 SRC_PSW_PATH = ./srcs_psw
 
-OBJ_PATH = ./objs
-OBJ_CHK_PATH = ./objs_chk
-OBJ_PSW_PATH = ./objs_psw
+OBJ_PATH = ./.objs
+OBJ_CHK_PATH = ./.objs_chk
+OBJ_PSW_PATH = ./.objs_psw
 
 INC_PATH = ./includes -I ./libft/includes
 LIB_PATH = ./libft
