@@ -22,6 +22,17 @@ int ft_is_num(char *str)
   return (ret);
 }
 
+static int	ft_is_duplicated(int value, t_stack *s)
+{
+	while (s != NULL)
+	{
+    if (s->data == value)
+			return (1);
+		s = s->next;
+	}
+	return (0);
+}
+
 t_stack  *ft_read_args(int ac, char **av)
 {
   int i;
@@ -36,9 +47,8 @@ t_stack  *ft_read_args(int ac, char **av)
     if (ft_strlen(av[i]) > 11 || !(ft_is_num(av[i])))
       ft_free_error(a, 0);
     value = ft_atol(av[i]);
-    if (value != (int)value)
+    if (value != (int)value || ft_is_duplicated((int)value, a))
       ft_free_error(a, 0);
-    //if not duplicate :
     if (a == NULL)
       a = ft_stack_new((int)value);
     else

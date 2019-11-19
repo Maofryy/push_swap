@@ -90,7 +90,7 @@ static int	sort_special_cases(int n, t_env *e)
 		ft_three_front_sort(n, e);
 		return (1);
 	}
-	else if (n <= 32)
+	else if (n <= 24)
 	{
     	ft_insert_sort(n, e);
 		return (1);
