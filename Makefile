@@ -38,6 +38,7 @@ PSW = push_swap
 
 SRC_NAME = ft_stack.c \
 	ft_exit.c \
+	ft_options.c \
 	ft_parse_nb.c \
 	ft_op.c
 

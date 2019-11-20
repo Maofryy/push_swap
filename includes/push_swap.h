@@ -3,6 +3,8 @@
 
 # include "libft.h"
 // #include <limits.h>
+# include <fcntl.h>
+# include <sys/stat.h>
 # define INT_MIN -2147483648
 
 
@@ -32,9 +34,14 @@ typedef struct		s_env
 	t_op		*ops;
 	int     ops_nb;
 	int		ac_start;
-	int		output_fd;
-	int		input_fd;
+	char	*o_filename;
+	int		o_fd;
 	int		o_flag;
+	char	*input_filename;
+	int		input_fd;
+	int		i_flag;
+	int		h_flag;
+	int		v_flag;
 }									t_env;
 
 t_stack		*ft_stack_new(int const data);
@@ -53,6 +60,7 @@ int			ft_stack_sorted(t_stack *a, int size);
 */
 t_stack 		*ft_read_args(int ac, char **av, int ac_start);
 int					ft_is_num(char *str);
+t_stack			*ft_read_input_file(t_env *e);
 
 /*
 **	Operations
@@ -63,7 +71,7 @@ int			ft_push(t_stack **a, t_stack **b);
 int			ft_rotate(t_stack **s);
 int			ft_reverse_rotate(t_stack **s);
 int			ft_apply_rot(char *name, t_stack **a, t_stack **b);
-int			ft_parse_op(t_stack **a, t_stack **b);
+int			ft_parse_op(t_env *e);
 
 char		*ft_get_op(t_op ops);
 void    ft_get_min_ops(t_env *e);
@@ -78,6 +86,8 @@ void			ft_free_exit(t_stack *a, t_stack *b);
 void			ft_free_only(t_stack *a, t_stack *b);
 void			ft_free_error(t_stack *a, t_stack *b);
 void 			ft_free_env(t_env *e);
+void			ft_free_flags(t_env *e);
+void 			ft_init_env(t_env *e);
 
 /*
 **	Messages
@@ -86,6 +96,8 @@ void 			ft_free_env(t_env *e);
 void ft_error(void);
 void ft_ok(void);
 void ft_ko(void);
+void	ft_ps_print_usage(void);
+void	ft_chk_print_usage(void);
 
 /*
 **	Sorting
@@ -98,5 +110,14 @@ void			ft_three_front_sort(int n, t_env *e);
 
 void		  optimize_couples(t_env *e);
 t_op      *ft_cut_2op_list(t_op *ops, int index, int max);
+
+/*
+**	Options
+*/
+void	ft_read_options(int ac, char **av, t_env *e);
+void    ft_open_o(t_env *e);
+void    ft_close_o(t_env *e);
+int		ft_open_input(int flag, char *filename, t_env *e);
+void    ft_close_input(t_env *e);
 
 #endif

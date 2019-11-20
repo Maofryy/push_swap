@@ -1,5 +1,20 @@
 #include "push_swap.h"
 
+void ft_init_env(t_env *e)
+{
+  e->a = NULL;
+  e->b = NULL;
+  e->ops = NULL;
+  e->ops_nb = 0;
+  e->ac_start = 1;
+  e->o_fd = 1;
+  e->input_fd = 0;
+  e->o_flag = 0;
+  e->i_flag = 0;
+  e->h_flag = 0;
+  e->v_flag = 0;
+}
+
 int ft_is_num(char *str)
 {
   char  *s;
@@ -40,7 +55,7 @@ t_stack  *ft_read_args(int ac, char **av, int ac_start)
   t_stack *t;
   t_stack *a;
 
-  i = ac_start;
+  i = ac_start - 1;
   a = NULL;
   while (++i < ac)
   {
@@ -64,4 +79,28 @@ t_stack  *ft_read_args(int ac, char **av, int ac_start)
     }
   }
   return (a);
+}
+
+static int       ft_tab_length(char **tab)
+{
+  int i;
+
+  i = 0;
+  while (tab[i] != 0)
+    i++;
+  return (i);
+}
+
+t_stack  *ft_read_input_file(t_env *e)
+{
+    char *line;
+    char **tab;
+    t_stack *a;
+
+    e->input_fd = ft_open_input(e->i_flag, e->input_filename, e);
+    get_next_line(e->input_fd, &line);
+    tab = ft_strsplit(line, ' ');
+    a = ft_read_args(ft_tab_length(tab), tab, 0);
+    ft_close_input(e);
+    return (a);
 }
