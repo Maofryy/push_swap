@@ -42,7 +42,6 @@ void	ft_read_options(int ac, char **av, t_env *e)
         else
             flag = 0;
     }
-    //Add more options
 }
 
 int    ft_open_input(int flag, char *filename, t_env *e)

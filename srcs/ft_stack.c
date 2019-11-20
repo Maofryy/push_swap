@@ -111,24 +111,31 @@ void	ft_stack_del(t_stack **s)
 
 void	ft_print_stack(t_stack *a, t_stack *b)
 {
-	t_stack *tmpa;
-	t_stack *tmpb;
+	int size_a;
+	int size_b;
 
-	tmpa = a;
-	tmpb = b;
-	ft_printf("\na | ");
-	while (tmpa)
+	size_a = ft_stack_size(a);
+	size_b = ft_stack_size(b);
+	while (size_a > size_b)
 	{
-		ft_printf("% 3d ", tmpa->data);
-		tmpa = tmpa->next;
+		ft_printf("% 5d | %5c\n", a->data, ' ');
+		a = a->next;
+		size_a--;
 	}
-	ft_printf("\nb | ");
-	while (tmpb)
+	while (size_a < size_b)
 	{
-		ft_printf("% 3d ", tmpb->data);
-		tmpb = tmpb->next;
+		ft_printf("%5c | %- 5d\n", ' ', b->data);
+		b = b->next;
+		size_b--;
 	}
-	ft_putchar('\n');
+	while (a && b)
+	{
+		ft_printf("% 5d | %- 5d\n", a->data, b->data);
+		a = a->next;
+		b = b->next;
+	}
+	ft_printf("----- | -----\n");
+	ft_printf("% 5c | %- 5c\n\n", 'a', 'b');
 }
 
 int ft_stack_sorted(t_stack *a, int size)

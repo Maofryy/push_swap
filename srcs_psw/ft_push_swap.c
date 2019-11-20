@@ -33,7 +33,6 @@ int main(int ac, char **av)
     e.a = ft_read_input_file(&e);
   else
     e.a = ft_read_args(ac, av, e.ac_start);
- 
   if (ft_stack_size(e.a) <= 1)
         ft_free_exit(e.a, e.b);
   if (!ft_stack_sorted(e.a, -1))
