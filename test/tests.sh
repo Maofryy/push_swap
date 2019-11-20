@@ -110,7 +110,7 @@ do
   NB_TEST=$[$NB_TEST-1];
 done
 PROGRESS=$[100 - $NB_TEST * 100 / ($NB_TESTS)]
-echo -ne "     $PROGRESS%\r"
+echo -e "     $PROGRESS%\r"
 
 echo "Min number of operations $MIN"
 echo "Max number of operations $MAX"

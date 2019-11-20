@@ -33,14 +33,14 @@ static int	ft_is_duplicated(int value, t_stack *s)
 	return (0);
 }
 
-t_stack  *ft_read_args(int ac, char **av)
+t_stack  *ft_read_args(int ac, char **av, int ac_start)
 {
   int i;
   long value;
   t_stack *t;
   t_stack *a;
 
-  i = 0;
+  i = ac_start;
   a = NULL;
   while (++i < ac)
   {

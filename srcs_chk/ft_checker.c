@@ -36,7 +36,7 @@ int main(int ac, char **av)
 	b = NULL;
 
 	//Parsing numbers // TO REDO
-	a = ft_read_args(ac, av);
+	a = ft_read_args(ac, av, 0);
 	if (ft_stack_size(a) <= 1)
 	{
 		ft_free_only(a, 0);

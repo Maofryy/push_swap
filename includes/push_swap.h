@@ -31,6 +31,10 @@ typedef struct		s_env
 	t_stack *b;
 	t_op		*ops;
 	int     ops_nb;
+	int		ac_start;
+	int		output_fd;
+	int		input_fd;
+	int		o_flag;
 }									t_env;
 
 t_stack		*ft_stack_new(int const data);
@@ -47,7 +51,7 @@ int			ft_stack_sorted(t_stack *a, int size);
 /*
 **	Read args
 */
-t_stack 		*ft_read_args(int ac, char **av);
+t_stack 		*ft_read_args(int ac, char **av, int ac_start);
 int					ft_is_num(char *str);
 
 /*

@@ -37,9 +37,9 @@ void		optimize_couples(t_env *e)
 	{
     if (can_optimize_rot(ft_get_op(e->ops[index]), ft_get_op(e->ops[index + 1])))
 		{
-      e->ops = ft_cut_2op_list(e->ops, index, e->ops_nb);
-      e->ops_nb -= 2;
-			index = 0;
+      		e->ops = ft_cut_2op_list(e->ops, index, e->ops_nb);
+      		e->ops_nb -= 2;
+			index = (index <= 0) ? 0 : index - 1;
 			continue ;
 		}
 		index++;
