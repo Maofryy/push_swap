@@ -40,6 +40,7 @@ SRC_NAME = ft_stack.c \
 	ft_exit.c \
 	ft_options.c \
 	ft_parse_nb.c \
+	ft_verbose.c \
 	ft_op.c
 
 SRC_CHK_NAME = ft_checker.c \
