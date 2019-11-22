@@ -22,7 +22,7 @@ int     ft_int_digits(int n)
 
     count = (n < 0) ? 2 : 1;
     n = (n < 0) ? -n : n;
-    while (n > 10)
+    while (n >= 10)
     {
         count++;
         n = n / 10;
@@ -56,8 +56,8 @@ void	ft_print_stack(t_stack *a, t_stack *b)
 
 	size_a = ft_stack_size(a);
 	size_b = ft_stack_size(b);
-    max_a = ft_stack_max_digits(a);
-    max_b = ft_stack_max_digits(b);
+    max_a = ft_max(ft_stack_max_digits(a), 1);
+    max_b = ft_max(ft_stack_max_digits(b), 1);
 	while (size_a > size_b)
 	{
 		ft_printf(" %s%d|%s\n", ft_charmult(max_a   - ft_int_digits(a->data), ' '), a->data, ft_charmult(max_b, ' '));
@@ -76,6 +76,6 @@ void	ft_print_stack(t_stack *a, t_stack *b)
 		a = a->next;
 		b = b->next;
 	}
-	ft_printf(" %s|%s\n", ft_charmult(ft_max(max_a, 3), '_'), ft_charmult(ft_max(max_b, 3), '_'));
-	ft_printf(" %sa |%sb \n\n", ft_charmult(max_a - 2, ' '), ft_charmult(max_b - 1, ' '));
+	ft_printf(" %s|%s\n", ft_charmult(max_a, '_'), ft_charmult(max_b + 1, '_'));
+	ft_printf("%sa|%sb \n\n", ft_charmult(max_a, ' '), ft_charmult(max_b - 1, ' '));
 }

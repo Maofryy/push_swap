@@ -64,11 +64,12 @@ void	ft_ps_print_usage(void)
 
 void	ft_chk_print_usage(void)
 {
-	ft_printf("usage : ./push_swap [options] {int list}\n");
+	ft_printf("usage : ./checker [options] {int list}\n");
 	ft_printf("Options:\n");
 	ft_printf("\t-h : display this help\n");
 	ft_printf("\t-v : activate verbose mode, that prints stacks at each operation\n");
 	ft_printf("\t-f [input_filemame] : read int list from a well formated file\n");
+	ft_printf("\t                      returns use help if int list is provided additionally\n");
 	ft_printf("\t-o [operations_filemame] : read operations from a well formated file\n");
 	exit(EXIT_SUCCESS);
 }
@@ -79,12 +80,18 @@ void	ft_free_flags(t_env *e)
 		free(e->o_filename);
 	if (e->i_flag)
 		free(e->input_filename);
-	exit(EXIT_SUCCESS);
 }
 
-void	ft_free_env(t_env *e)
+void	ft_free_env_only(t_env *e)
 {
 	ft_free_only(e->a, e->b);
 	free(e->ops);
 	ft_free_flags(e);
+}
+
+
+void	ft_free_env(t_env *e)
+{
+	ft_free_env_only(e);
+	exit(EXIT_SUCCESS);
 }

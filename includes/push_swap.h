@@ -70,7 +70,7 @@ int			ft_swap(t_stack **s);
 int			ft_push(t_stack **a, t_stack **b);
 int			ft_rotate(t_stack **s);
 int			ft_reverse_rotate(t_stack **s);
-int			ft_apply_rot(char *name, t_stack **a, t_stack **b);
+int			ft_apply_rot(char *name, t_stack **a, t_stack **b, int v_flag);
 int			ft_parse_op(t_env *e);
 
 char		*ft_get_op(t_op ops);
@@ -86,6 +86,7 @@ void			ft_free_exit(t_stack *a, t_stack *b);
 void			ft_free_only(t_stack *a, t_stack *b);
 void			ft_free_error(t_stack *a, t_stack *b);
 void 			ft_free_env(t_env *e);
+void			ft_free_env_only(t_env *e);
 void			ft_free_flags(t_env *e);
 void 			ft_init_env(t_env *e);
 

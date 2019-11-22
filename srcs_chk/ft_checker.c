@@ -32,14 +32,13 @@ int main(int ac, char **av)
 	t_env   e;
 	int n;
 
-	if (ac < 2)
-    	ft_chk_print_usage();
 	ft_init_env(&e);
 	ft_read_options(ac, av, &e);
-	if (e.h_flag)
+	if (e.h_flag || ((ac - e.ac_start <= 0) && !(e.i_flag)) || (e.i_flag && (ac - e.ac_start >= 1)))
   	{
-    	ft_ps_print_usage();
+    	ft_chk_print_usage();
     	ft_free_flags(&e);
+		exit(EXIT_SUCCESS);
   	}
 	if (e.i_flag)
     	e.a = ft_read_input_file(&e);
@@ -47,8 +46,13 @@ int main(int ac, char **av)
     	e.a = ft_read_args(ac, av, e.ac_start);
 	if (ft_stack_size(e.a) <= 1)
 	{
-		ft_free_only(e.a, 0);
+		ft_free_env_only(&e);
 		ft_ok();
+	}
+	if (e.v_flag)
+	{
+		ft_printf("Init stacks :\n");
+		ft_print_stack(e.a, e.b);
 	}
 	e.o_fd = ft_open_input(e.o_flag, e.o_filename, &e);
 	n = ft_parse_op(&e);

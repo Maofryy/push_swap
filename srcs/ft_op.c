@@ -56,7 +56,7 @@ int ft_reverse_rotate(t_stack **s) {
   return (1);
 }
 
-int	ft_apply_rot(char *name, t_stack **a, t_stack **b)
+int	ft_apply_rot(char *name, t_stack **a, t_stack **b, int v_flag)
 {
 	int	ret;
 
@@ -77,8 +77,12 @@ int	ft_apply_rot(char *name, t_stack **a, t_stack **b)
 		ret = ft_reverse_rotate(a);
 	if (ft_strequ("rrb", name) || ft_strequ("rrr", name))
 		ret = ft_reverse_rotate(b);
-	// ft_printf("op : %s\n", name);
-	return (ret);
+	if (v_flag && ret == 1)
+  {
+      ft_printf("Exec operation : %s\n", name);
+      ft_print_stack(*a, *b);
+  }
+  return (ret);
 }
 
 char	*ft_get_op(t_op op)
@@ -101,7 +105,7 @@ int ft_apply_op(t_op op, t_env *e)
 
 	ret = -1;
   name = ft_get_op(op);
-  ret = ft_apply_rot(name, &e->a, &e->b);
+  ret = ft_apply_rot(name, &e->a, &e->b, e->v_flag);
   e->ops[e->ops_nb++] = op;
   e->ops[e->ops_nb] = 0;
 	return (ret);

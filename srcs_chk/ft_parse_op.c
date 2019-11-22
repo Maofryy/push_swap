@@ -10,17 +10,17 @@ int ft_parse_op(t_env *e)
   {
     if (ft_strlen(line) == 0)
       break ;
-    if (ft_apply_rot(line, &e->a, &e->b) == -1)
+    if (ft_apply_rot(line, &e->a, &e->b, e->v_flag) == -1)
     {
       free(line);
       ft_free_error(e->a, e->b);
     }
     n++;
-    if (e->v_flag)
-    {
-      ft_printf("Exec operation : %s\n\n", line);
-      ft_print_stack(e->a, e->b);
-    }
+    // if (e->v_flag)
+    // {
+    //   ft_printf("Exec operation : %s\n", line);
+    //   ft_print_stack(e->a, e->b);
+    // }
     free(line);
   }
   return (n);

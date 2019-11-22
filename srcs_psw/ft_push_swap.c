@@ -34,7 +34,7 @@ int main(int ac, char **av)
   else
     e.a = ft_read_args(ac, av, e.ac_start);
   if (ft_stack_size(e.a) <= 1)
-        ft_free_exit(e.a, e.b);
+        ft_free_env(&e);
   if (!ft_stack_sorted(e.a, -1))
     ft_get_min_ops(&e);
   ft_open_o(&e);
