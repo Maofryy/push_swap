@@ -13,7 +13,6 @@ int ft_swap(t_stack **s)
     return (-1);
   ft_stack_push(s, (int)i1);
   ft_stack_push(s, (int)i2);
-  // ft_printf("swap\n");
   return (1);
 }
 
@@ -26,7 +25,6 @@ int ft_push(t_stack **a, t_stack **b) {
   if (i == INT_MIN - 1)
     return (-1);
   ft_stack_push(a, (int)i);
-  // ft_printf("push\n");
   return (1);
 }
 
@@ -39,7 +37,6 @@ int ft_rotate(t_stack **s) {
   if (i == INT_MIN - 1)
     return (-1);
   ft_stack_push_tail(s, (int)i);
-  // ft_printf("rotate\n");
   return (1);
 }
 
@@ -52,7 +49,6 @@ int ft_reverse_rotate(t_stack **s) {
   if (i == INT_MIN - 1)
     return (-1);
   ft_stack_push(s, (int)i);
-  // ft_printf("reverse rotate\n");
   return (1);
 }
 

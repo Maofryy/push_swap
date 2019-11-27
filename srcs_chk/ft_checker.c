@@ -51,7 +51,7 @@ int main(int ac, char **av)
 	}
 	if (e.v_flag)
 	{
-		ft_printf("Init stacks :\n");
+		ft_putstr("Init stacks :\n");
 		ft_print_stack(e.a, e.b);
 	}
 	e.o_fd = ft_open_input(e.o_flag, e.o_filename, &e);

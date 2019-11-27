@@ -1,19 +1,6 @@
 #include "push_swap.h"
-
-void ft_test_ops(t_env *e)
-{
-    e->ops = malloc(sizeof(t_op) * 1024);
-    ft_swap(&e->a);
-    // ft_printf("la ?\n");
-    e->ops[e->ops_nb++] = SA;
-
-    // ft_printf("la ?\n");
-    ft_rotate(&e->a);
-    e->ops[e->ops_nb++] = RA;
-    // *(e->ops++) = RA;
-
-    e->ops[e->ops_nb] = 0;
-}
+#include <time.h>
+#include <stdio.h>
 
 int main(int ac, char **av)
 {
@@ -41,6 +28,8 @@ int main(int ac, char **av)
   i = -1;
   while (e.ops && e.ops[++i])
     ft_dprintf(e.o_fd, "%s\n", ft_get_op(e.ops[i]));
+  if (e.o_flag)
+    ft_printf("Output written in file : %s\n", e.o_filename);
   ft_close_o(&e);
   ft_free_env(&e);
   return (0);

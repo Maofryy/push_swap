@@ -16,11 +16,6 @@ int ft_parse_op(t_env *e)
       ft_free_error(e->a, e->b);
     }
     n++;
-    // if (e->v_flag)
-    // {
-    //   ft_printf("Exec operation : %s\n", line);
-    //   ft_print_stack(e->a, e->b);
-    // }
     free(line);
   }
   return (n);

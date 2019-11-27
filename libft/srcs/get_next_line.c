@@ -83,7 +83,6 @@ int		get_next_line(const int fd, char **line)
 	char		*tmp;
 	int			ret;
 
-	// ft_printf("heyHey\n");
 	if (fd < 0 || line == NULL)
 		return (-1);
 	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)

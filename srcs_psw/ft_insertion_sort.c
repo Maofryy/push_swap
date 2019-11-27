@@ -70,8 +70,6 @@ void ft_insert_sort(int n, t_env *e)
 	int	index;
 	int	j;
 
-	// ft_print_stack(e->a, e->b);
-	// ft_printf("Using insert sort\n");
 	if (!(tab = (int *)ft_memalloc(n * sizeof(int))))
 		return ;
 	left = ft_min(3, n);
